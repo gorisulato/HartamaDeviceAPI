@@ -1,0 +1,1 @@
+{"sensorType":"Temprature","values":["20","21","23"],"timestamps":["10:10","10:20","10:30"]}

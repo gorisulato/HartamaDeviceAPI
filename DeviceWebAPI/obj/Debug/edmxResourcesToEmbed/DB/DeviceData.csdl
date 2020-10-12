@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Hartama_IOTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Hartama_IOTEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="P_NumberSeri">
+      <Parameter Name="MODUL" Mode="In" Type="String" />
+      <Parameter Name="SPREFIX" Mode="In" Type="String" />
+      <Parameter Name="PANJANG" Mode="In" Type="Int32" />
+      <Parameter Name="NOMORSERI" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ReceiveDataLOG" ReturnType="Collection(Hartama_IOTModel.ReceiveDataLOG_Result)">
+      <Parameter Name="device_id" Mode="In" Type="String" />
+      <Parameter Name="Arus" Mode="In" Type="Decimal" />
+      <Parameter Name="Arus1" Mode="In" Type="Decimal" />
+      <Parameter Name="Arus2" Mode="In" Type="Decimal" />
+      <Parameter Name="Daya" Mode="In" Type="Decimal" />
+      <Parameter Name="Daya1" Mode="In" Type="Decimal" />
+      <Parameter Name="Daya2" Mode="In" Type="Decimal" />
+      <Parameter Name="Dist" Mode="In" Type="Decimal" />
+      <Parameter Name="Distances" Mode="In" Type="Decimal" />
+      <Parameter Name="Electric" Mode="In" Type="Decimal" />
+      <Parameter Name="Enviro" Mode="In" Type="Decimal" />
+      <Parameter Name="Gas" Mode="In" Type="Decimal" />
+      <Parameter Name="Humidity" Mode="In" Type="Decimal" />
+      <Parameter Name="Koneksi" Mode="In" Type="Decimal" />
+      <Parameter Name="Power" Mode="In" Type="Decimal" />
+      <Parameter Name="Power1" Mode="In" Type="Decimal" />
+      <Parameter Name="Power2" Mode="In" Type="Decimal" />
+      <Parameter Name="Press" Mode="In" Type="Decimal" />
+      <Parameter Name="Pressure" Mode="In" Type="Decimal" />
+      <Parameter Name="Smoke" Mode="In" Type="Decimal" />
+      <Parameter Name="Suhu" Mode="In" Type="Decimal" />
+      <Parameter Name="Tegangan" Mode="In" Type="Decimal" />
+      <Parameter Name="Tegangan1" Mode="In" Type="Decimal" />
+      <Parameter Name="Tegangan2" Mode="In" Type="Decimal" />
+      <Parameter Name="Temp" Mode="In" Type="Decimal" />
+      <Parameter Name="Temprature" Mode="In" Type="Decimal" />
+      <Parameter Name="Vibe" Mode="In" Type="Decimal" />
+      <Parameter Name="Vibra" Mode="In" Type="Decimal" />
+      <Parameter Name="date_received" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="InsertNotification">
+      <Parameter Name="DeviceID" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="UserSent" Mode="In" Type="String" />
+      <Parameter Name="dateCreated" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="InsertDeviceLogNew" ReturnType="Collection(Hartama_IOTModel.InsertDeviceLogNew_Result)">
+      <Parameter Name="value" Mode="In" Type="Decimal" />
+      <Parameter Name="macaddress" Mode="In" Type="String" />
+      <Parameter Name="MainSensor" Mode="In" Type="String" />
+      <Parameter Name="unit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertlogchange" />
+  </EntityContainer>
+  <ComplexType Name="ReceiveDataLOG_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="InsertDeviceLogNew_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+</Schema>

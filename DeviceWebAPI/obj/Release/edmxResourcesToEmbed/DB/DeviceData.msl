@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Hartama_IOTModelStoreContainer" CdmEntityContainer="Hartama_IOTEntities">
+    <FunctionImportMapping FunctionImportName="P_NumberSeri" FunctionName="Hartama_IOTModel.Store.P_NumberSeri" />
+    <FunctionImportMapping FunctionImportName="ReceiveDataLOG" FunctionName="Hartama_IOTModel.Store.ReceiveDataLOG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.ReceiveDataLOG_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertNotification" FunctionName="Hartama_IOTModel.Store.InsertNotification" />
+    <FunctionImportMapping FunctionImportName="InsertDeviceLogNew" FunctionName="Hartama_IOTModel.Store.InsertDeviceLogNew">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertDeviceLogNew_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="insertlogchange" FunctionName="Hartama_IOTModel.Store.insertlogchange" />
+  </EntityContainerMapping>
+</Mapping>
