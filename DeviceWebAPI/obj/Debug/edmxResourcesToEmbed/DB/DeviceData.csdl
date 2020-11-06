@@ -38,26 +38,92 @@
       <Parameter Name="Vibra" Mode="In" Type="Decimal" />
       <Parameter Name="date_received" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="InsertNotification">
-      <Parameter Name="DeviceID" Mode="In" Type="String" />
-      <Parameter Name="Title" Mode="In" Type="String" />
-      <Parameter Name="Description" Mode="In" Type="String" />
-      <Parameter Name="UserSent" Mode="In" Type="String" />
-      <Parameter Name="dateCreated" Mode="In" Type="DateTime" />
-    </FunctionImport>
+    <FunctionImport Name="insertlogchange" />
+    <EntitySet Name="TSensorTests" EntityType="Hartama_IOTModel.TSensorTest" />
+    <EntitySet Name="TDetailDevices" EntityType="Hartama_IOTModel.TDetailDevice" />
+    <EntitySet Name="TDetailGroupSensors" EntityType="Hartama_IOTModel.TDetailGroupSensor" />
     <FunctionImport Name="InsertDeviceLogNew" ReturnType="Collection(Hartama_IOTModel.InsertDeviceLogNew_Result)">
       <Parameter Name="value" Mode="In" Type="Decimal" />
       <Parameter Name="macaddress" Mode="In" Type="String" />
       <Parameter Name="MainSensor" Mode="In" Type="String" />
       <Parameter Name="unit" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="insertlogchange" />
+    <EntitySet Name="PSensorParameters" EntityType="Hartama_IOTModel.PSensorParameter" />
+    <EntitySet Name="PDevices" EntityType="Hartama_IOTModel.PDevice" />
+    <FunctionImport Name="InsertNotification" ReturnType="Collection(Hartama_IOTModel.InsertNotification_Result)">
+      <Parameter Name="DeviceID" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="problemstat" Mode="In" Type="String" />
+      <Parameter Name="dateCreated" Mode="In" Type="DateTime" />
+      <Parameter Name="valuecurrent" Mode="In" Type="Decimal" />
+      <Parameter Name="valueupper" Mode="In" Type="Decimal" />
+      <Parameter Name="valuelower" Mode="In" Type="Decimal" />
+      <Parameter Name="sensorname" Mode="In" Type="String" />
+      <Parameter Name="Devicename" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ReceiveDataLOG_Result">
     <Property Type="String" Name="Pesan" Nullable="true" />
     <Property Type="Int32" Name="Error" Nullable="true" />
   </ComplexType>
+  <EntityType Name="TSensorTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mcadrress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TDetailDevice">
+    <Key>
+      <PropertyRef Name="ID_DetailDevices" />
+    </Key>
+    <Property Name="ID_DetailDevices" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Device" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MacAdressSensor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TDetailGroupSensor">
+    <Key>
+      <PropertyRef Name="ID_Detail_Group_Sensor" />
+    </Key>
+    <Property Name="ID_Detail_Group_Sensor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Detail_SensorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Main_Group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
   <ComplexType Name="InsertDeviceLogNew_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="PSensorParameter">
+    <Key>
+      <PropertyRef Name="ID_Param" />
+    </Key>
+    <Property Name="ID_Param" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Sensor_Detail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lower_Limit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Upper_Limit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserEntry" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateLastMaintenance" Type="DateTime" Precision="3" />
+    <Property Name="UserLastMaintenance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PDevice">
+    <Key>
+      <PropertyRef Name="Device_ID" />
+    </Key>
+    <Property Name="Device_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Device_Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Device_category_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Device_Site_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Device_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserEntry" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="DateEntry" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserLastMaintenance" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="DateLastMaintenance" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="InsertNotification_Result">
     <Property Type="String" Name="Pesan" Nullable="true" />
     <Property Type="Int32" Name="Error" Nullable="true" />
   </ComplexType>

@@ -1,5 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Hartama_IOTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Hartama_IOTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PDevice">
+    <Key>
+      <PropertyRef Name="Device_ID" />
+    </Key>
+    <Property Name="Device_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Device_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Device_category_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Device_Site_ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Device_Description" Type="nvarchar(max)" />
+    <Property Name="UserEntry" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="DateEntry" Type="datetime" Nullable="false" />
+    <Property Name="UserLastMaintenance" Type="nvarchar" MaxLength="15" />
+    <Property Name="DateLastMaintenance" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PSensorParameter">
+    <Key>
+      <PropertyRef Name="ID_Param" />
+    </Key>
+    <Property Name="ID_Param" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Sensor_Detail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lower_Limit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Upper_Limit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="UserEntry" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateLastMaintenance" Type="datetime" />
+    <Property Name="UserLastMaintenance" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TDetailDevices">
+    <Key>
+      <PropertyRef Name="ID_DetailDevices" />
+    </Key>
+    <Property Name="ID_DetailDevices" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Device" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MacAdressSensor" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TDetailGroupSensor">
+    <Key>
+      <PropertyRef Name="ID_Detail_Group_Sensor" />
+    </Key>
+    <Property Name="ID_Detail_Group_Sensor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Detail_SensorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Main_Group" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nchar" MaxLength="10" />
+    <Property Name="unit" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TSensorTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mcadrress" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <Function Name="InsertDeviceLogNew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="value" Type="decimal" Mode="In" />
     <Parameter Name="macaddress" Type="nvarchar(max)" Mode="In" />
@@ -51,5 +104,11 @@
     <Parameter Name="Vibra" Type="decimal" Mode="In" />
     <Parameter Name="date_received" Type="datetime" Mode="In" />
   </Function>
-  <EntityContainer Name="Hartama_IOTModelStoreContainer" />
+  <EntityContainer Name="Hartama_IOTModelStoreContainer">
+    <EntitySet Name="PDevice" EntityType="Self.PDevice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSensorParameter" EntityType="Self.PSensorParameter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TDetailDevices" EntityType="Self.TDetailDevices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TDetailGroupSensor" EntityType="Self.TDetailGroupSensor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TSensorTest" EntityType="Self.TSensorTest" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
 </Schema>

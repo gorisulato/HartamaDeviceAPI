@@ -5,6 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="68c55cd9793f48babfc8b78862da69cf" Name="Diagram1" >
+        <EntityTypeShape EntityType="Hartama_IOTModel.TSensorTest" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Hartama_IOTModel.TDetailDevice" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Hartama_IOTModel.TDetailGroupSensor" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Hartama_IOTModel.PSensorParameter" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Hartama_IOTModel.PDevice" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

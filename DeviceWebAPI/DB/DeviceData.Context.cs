@@ -27,6 +27,11 @@ namespace DeviceWebAPI.DB
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<TSensorTest> TSensorTests { get; set; }
+        public virtual DbSet<TDetailDevice> TDetailDevices { get; set; }
+        public virtual DbSet<TDetailGroupSensor> TDetailGroupSensors { get; set; }
+        public virtual DbSet<PSensorParameter> PSensorParameters { get; set; }
+        public virtual DbSet<PDevice> PDevices { get; set; }
     
         public virtual int P_NumberSeri(string mODUL, string sPREFIX, Nullable<int> pANJANG, ObjectParameter nOMORSERI)
         {
@@ -166,29 +171,9 @@ namespace DeviceWebAPI.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReceiveDataLOG_Result>("ReceiveDataLOG", device_idParameter, arusParameter, arus1Parameter, arus2Parameter, dayaParameter, daya1Parameter, daya2Parameter, distParameter, distancesParameter, electricParameter, enviroParameter, gasParameter, humidityParameter, koneksiParameter, powerParameter, power1Parameter, power2Parameter, pressParameter, pressureParameter, smokeParameter, suhuParameter, teganganParameter, tegangan1Parameter, tegangan2Parameter, tempParameter, tempratureParameter, vibeParameter, vibraParameter, date_receivedParameter);
         }
     
-        public virtual int InsertNotification(string deviceID, string title, string description, string userSent, Nullable<System.DateTime> dateCreated)
+        public virtual int insertlogchange()
         {
-            var deviceIDParameter = deviceID != null ?
-                new ObjectParameter("DeviceID", deviceID) :
-                new ObjectParameter("DeviceID", typeof(string));
-    
-            var titleParameter = title != null ?
-                new ObjectParameter("Title", title) :
-                new ObjectParameter("Title", typeof(string));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
-    
-            var userSentParameter = userSent != null ?
-                new ObjectParameter("UserSent", userSent) :
-                new ObjectParameter("UserSent", typeof(string));
-    
-            var dateCreatedParameter = dateCreated.HasValue ?
-                new ObjectParameter("dateCreated", dateCreated) :
-                new ObjectParameter("dateCreated", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertNotification", deviceIDParameter, titleParameter, descriptionParameter, userSentParameter, dateCreatedParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertlogchange");
         }
     
         public virtual ObjectResult<InsertDeviceLogNew_Result> InsertDeviceLogNew(Nullable<decimal> value, string macaddress, string mainSensor, string unit)
@@ -212,9 +197,45 @@ namespace DeviceWebAPI.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InsertDeviceLogNew_Result>("InsertDeviceLogNew", valueParameter, macaddressParameter, mainSensorParameter, unitParameter);
         }
     
-        public virtual int insertlogchange()
+        public virtual ObjectResult<InsertNotification_Result> InsertNotification(string deviceID, string title, string problemstat, Nullable<System.DateTime> dateCreated, Nullable<decimal> valuecurrent, Nullable<decimal> valueupper, Nullable<decimal> valuelower, string sensorname, string devicename)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertlogchange");
+            var deviceIDParameter = deviceID != null ?
+                new ObjectParameter("DeviceID", deviceID) :
+                new ObjectParameter("DeviceID", typeof(string));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var problemstatParameter = problemstat != null ?
+                new ObjectParameter("problemstat", problemstat) :
+                new ObjectParameter("problemstat", typeof(string));
+    
+            var dateCreatedParameter = dateCreated.HasValue ?
+                new ObjectParameter("dateCreated", dateCreated) :
+                new ObjectParameter("dateCreated", typeof(System.DateTime));
+    
+            var valuecurrentParameter = valuecurrent.HasValue ?
+                new ObjectParameter("valuecurrent", valuecurrent) :
+                new ObjectParameter("valuecurrent", typeof(decimal));
+    
+            var valueupperParameter = valueupper.HasValue ?
+                new ObjectParameter("valueupper", valueupper) :
+                new ObjectParameter("valueupper", typeof(decimal));
+    
+            var valuelowerParameter = valuelower.HasValue ?
+                new ObjectParameter("valuelower", valuelower) :
+                new ObjectParameter("valuelower", typeof(decimal));
+    
+            var sensornameParameter = sensorname != null ?
+                new ObjectParameter("sensorname", sensorname) :
+                new ObjectParameter("sensorname", typeof(string));
+    
+            var devicenameParameter = devicename != null ?
+                new ObjectParameter("Devicename", devicename) :
+                new ObjectParameter("Devicename", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InsertNotification_Result>("InsertNotification", deviceIDParameter, titleParameter, problemstatParameter, dateCreatedParameter, valuecurrentParameter, valueupperParameter, valuelowerParameter, sensornameParameter, devicenameParameter);
         }
     }
 }

@@ -10,7 +10,35 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="InsertNotification" FunctionName="Hartama_IOTModel.Store.InsertNotification" />
+    <FunctionImportMapping FunctionImportName="insertlogchange" FunctionName="Hartama_IOTModel.Store.insertlogchange" />
+    <EntitySetMapping Name="TSensorTests">
+      <EntityTypeMapping TypeName="Hartama_IOTModel.TSensorTest">
+        <MappingFragment StoreEntitySet="TSensorTest">
+          <ScalarProperty Name="mcadrress" ColumnName="mcadrress" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TDetailDevices">
+      <EntityTypeMapping TypeName="Hartama_IOTModel.TDetailDevice">
+        <MappingFragment StoreEntitySet="TDetailDevices">
+          <ScalarProperty Name="MacAdressSensor" ColumnName="MacAdressSensor" />
+          <ScalarProperty Name="ID_Device" ColumnName="ID_Device" />
+          <ScalarProperty Name="ID_DetailDevices" ColumnName="ID_DetailDevices" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TDetailGroupSensors">
+      <EntityTypeMapping TypeName="Hartama_IOTModel.TDetailGroupSensor">
+        <MappingFragment StoreEntitySet="TDetailGroupSensor">
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID_Main_Group" ColumnName="ID_Main_Group" />
+          <ScalarProperty Name="Detail_SensorName" ColumnName="Detail_SensorName" />
+          <ScalarProperty Name="ID_Detail_Group_Sensor" ColumnName="ID_Detail_Group_Sensor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="InsertDeviceLogNew" FunctionName="Hartama_IOTModel.Store.InsertDeviceLogNew">
       <ResultMapping>
         <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertDeviceLogNew_Result">
@@ -19,6 +47,43 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="insertlogchange" FunctionName="Hartama_IOTModel.Store.insertlogchange" />
+    <EntitySetMapping Name="PSensorParameters">
+      <EntityTypeMapping TypeName="Hartama_IOTModel.PSensorParameter">
+        <MappingFragment StoreEntitySet="PSensorParameter">
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Upper_Limit" ColumnName="Upper_Limit" />
+          <ScalarProperty Name="Lower_Limit" ColumnName="Lower_Limit" />
+          <ScalarProperty Name="ID_Sensor_Detail" ColumnName="ID_Sensor_Detail" />
+          <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+          <ScalarProperty Name="ID_Param" ColumnName="ID_Param" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PDevices">
+      <EntityTypeMapping TypeName="Hartama_IOTModel.PDevice">
+        <MappingFragment StoreEntitySet="PDevice">
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="Device_Description" ColumnName="Device_Description" />
+          <ScalarProperty Name="Device_Site_ID" ColumnName="Device_Site_ID" />
+          <ScalarProperty Name="Device_category_ID" ColumnName="Device_category_ID" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+          <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InsertNotification" FunctionName="Hartama_IOTModel.Store.InsertNotification">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertNotification_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -4,7 +4,60 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Hartama_IOTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Hartama_IOTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PDevice">
+          <Key>
+            <PropertyRef Name="Device_ID" />
+          </Key>
+          <Property Name="Device_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Device_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Device_category_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Device_Site_ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Device_Description" Type="nvarchar(max)" />
+          <Property Name="UserEntry" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="DateEntry" Type="datetime" Nullable="false" />
+          <Property Name="UserLastMaintenance" Type="nvarchar" MaxLength="15" />
+          <Property Name="DateLastMaintenance" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PSensorParameter">
+          <Key>
+            <PropertyRef Name="ID_Param" />
+          </Key>
+          <Property Name="ID_Param" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Sensor_Detail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lower_Limit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Upper_Limit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserEntry" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateLastMaintenance" Type="datetime" />
+          <Property Name="UserLastMaintenance" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TDetailDevices">
+          <Key>
+            <PropertyRef Name="ID_DetailDevices" />
+          </Key>
+          <Property Name="ID_DetailDevices" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Device" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MacAdressSensor" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TDetailGroupSensor">
+          <Key>
+            <PropertyRef Name="ID_Detail_Group_Sensor" />
+          </Key>
+          <Property Name="ID_Detail_Group_Sensor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Detail_SensorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Main_Group" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nchar" MaxLength="10" />
+          <Property Name="unit" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TSensorTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mcadrress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Function Name="InsertDeviceLogNew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="value" Type="decimal" Mode="In" />
           <Parameter Name="macaddress" Type="nvarchar(max)" Mode="In" />
@@ -15,9 +68,13 @@
         <Function Name="InsertNotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
           <Parameter Name="Title" Type="nvarchar" Mode="In" />
-          <Parameter Name="Description" Type="nvarchar" Mode="In" />
-          <Parameter Name="UserSent" Type="nvarchar" Mode="In" />
+          <Parameter Name="problemstat" Type="nvarchar" Mode="In" />
           <Parameter Name="dateCreated" Type="datetime" Mode="In" />
+          <Parameter Name="valuecurrent" Type="decimal" Mode="In" />
+          <Parameter Name="valueupper" Type="decimal" Mode="In" />
+          <Parameter Name="valuelower" Type="decimal" Mode="In" />
+          <Parameter Name="sensorname" Type="nvarchar" Mode="In" />
+          <Parameter Name="Devicename" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="P_NumberSeri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MODUL" Type="nvarchar" Mode="In" />
@@ -56,7 +113,13 @@
           <Parameter Name="Vibra" Type="decimal" Mode="In" />
           <Parameter Name="date_received" Type="datetime" Mode="In" />
         </Function>
-        <EntityContainer Name="Hartama_IOTModelStoreContainer" />
+        <EntityContainer Name="Hartama_IOTModelStoreContainer">
+          <EntitySet Name="PDevice" EntityType="Self.PDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PSensorParameter" EntityType="Self.PSensorParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDetailDevices" EntityType="Self.TDetailDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDetailGroupSensor" EntityType="Self.TDetailGroupSensor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TSensorTest" EntityType="Self.TSensorTest" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -99,26 +162,92 @@
             <Parameter Name="Vibra" Mode="In" Type="Decimal" />
             <Parameter Name="date_received" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="InsertNotification">
-            <Parameter Name="DeviceID" Mode="In" Type="String" />
-            <Parameter Name="Title" Mode="In" Type="String" />
-            <Parameter Name="Description" Mode="In" Type="String" />
-            <Parameter Name="UserSent" Mode="In" Type="String" />
-            <Parameter Name="dateCreated" Mode="In" Type="DateTime" />
-          </FunctionImport>
+          <FunctionImport Name="insertlogchange" />
+          <EntitySet Name="TSensorTests" EntityType="Hartama_IOTModel.TSensorTest" />
+          <EntitySet Name="TDetailDevices" EntityType="Hartama_IOTModel.TDetailDevice" />
+          <EntitySet Name="TDetailGroupSensors" EntityType="Hartama_IOTModel.TDetailGroupSensor" />
           <FunctionImport Name="InsertDeviceLogNew" ReturnType="Collection(Hartama_IOTModel.InsertDeviceLogNew_Result)">
             <Parameter Name="value" Mode="In" Type="Decimal" />
             <Parameter Name="macaddress" Mode="In" Type="String" />
             <Parameter Name="MainSensor" Mode="In" Type="String" />
             <Parameter Name="unit" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="insertlogchange" />
+          <EntitySet Name="PSensorParameters" EntityType="Hartama_IOTModel.PSensorParameter" />
+          <EntitySet Name="PDevices" EntityType="Hartama_IOTModel.PDevice" />
+          <FunctionImport Name="InsertNotification" ReturnType="Collection(Hartama_IOTModel.InsertNotification_Result)">
+            <Parameter Name="DeviceID" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="problemstat" Mode="In" Type="String" />
+            <Parameter Name="dateCreated" Mode="In" Type="DateTime" />
+            <Parameter Name="valuecurrent" Mode="In" Type="Decimal" />
+            <Parameter Name="valueupper" Mode="In" Type="Decimal" />
+            <Parameter Name="valuelower" Mode="In" Type="Decimal" />
+            <Parameter Name="sensorname" Mode="In" Type="String" />
+            <Parameter Name="Devicename" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ReceiveDataLOG_Result">
           <Property Type="String" Name="Pesan" Nullable="true" />
           <Property Type="Int32" Name="Error" Nullable="true" />
         </ComplexType>
+        <EntityType Name="TSensorTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mcadrress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TDetailDevice">
+          <Key>
+            <PropertyRef Name="ID_DetailDevices" />
+          </Key>
+          <Property Name="ID_DetailDevices" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Device" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MacAdressSensor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TDetailGroupSensor">
+          <Key>
+            <PropertyRef Name="ID_Detail_Group_Sensor" />
+          </Key>
+          <Property Name="ID_Detail_Group_Sensor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Detail_SensorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Main_Group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         <ComplexType Name="InsertDeviceLogNew_Result">
+          <Property Type="String" Name="Pesan" Nullable="true" />
+          <Property Type="Int32" Name="Error" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="PSensorParameter">
+          <Key>
+            <PropertyRef Name="ID_Param" />
+          </Key>
+          <Property Name="ID_Param" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Sensor_Detail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lower_Limit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Upper_Limit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserEntry" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateLastMaintenance" Type="DateTime" Precision="3" />
+          <Property Name="UserLastMaintenance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PDevice">
+          <Key>
+            <PropertyRef Name="Device_ID" />
+          </Key>
+          <Property Name="Device_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Device_Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Device_category_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Device_Site_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Device_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserEntry" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DateEntry" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastMaintenance" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DateLastMaintenance" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="InsertNotification_Result">
           <Property Type="String" Name="Pesan" Nullable="true" />
           <Property Type="Int32" Name="Error" Nullable="true" />
         </ComplexType>
@@ -137,7 +266,35 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="InsertNotification" FunctionName="Hartama_IOTModel.Store.InsertNotification" />
+          <FunctionImportMapping FunctionImportName="insertlogchange" FunctionName="Hartama_IOTModel.Store.insertlogchange" />
+          <EntitySetMapping Name="TSensorTests">
+            <EntityTypeMapping TypeName="Hartama_IOTModel.TSensorTest">
+              <MappingFragment StoreEntitySet="TSensorTest">
+                <ScalarProperty Name="mcadrress" ColumnName="mcadrress" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDetailDevices">
+            <EntityTypeMapping TypeName="Hartama_IOTModel.TDetailDevice">
+              <MappingFragment StoreEntitySet="TDetailDevices">
+                <ScalarProperty Name="MacAdressSensor" ColumnName="MacAdressSensor" />
+                <ScalarProperty Name="ID_Device" ColumnName="ID_Device" />
+                <ScalarProperty Name="ID_DetailDevices" ColumnName="ID_DetailDevices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDetailGroupSensors">
+            <EntityTypeMapping TypeName="Hartama_IOTModel.TDetailGroupSensor">
+              <MappingFragment StoreEntitySet="TDetailGroupSensor">
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID_Main_Group" ColumnName="ID_Main_Group" />
+                <ScalarProperty Name="Detail_SensorName" ColumnName="Detail_SensorName" />
+                <ScalarProperty Name="ID_Detail_Group_Sensor" ColumnName="ID_Detail_Group_Sensor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="InsertDeviceLogNew" FunctionName="Hartama_IOTModel.Store.InsertDeviceLogNew">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertDeviceLogNew_Result">
@@ -146,7 +303,44 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="insertlogchange" FunctionName="Hartama_IOTModel.Store.insertlogchange" />
+          <EntitySetMapping Name="PSensorParameters">
+            <EntityTypeMapping TypeName="Hartama_IOTModel.PSensorParameter">
+              <MappingFragment StoreEntitySet="PSensorParameter">
+                <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+                <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+                <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Upper_Limit" ColumnName="Upper_Limit" />
+                <ScalarProperty Name="Lower_Limit" ColumnName="Lower_Limit" />
+                <ScalarProperty Name="ID_Sensor_Detail" ColumnName="ID_Sensor_Detail" />
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+                <ScalarProperty Name="ID_Param" ColumnName="ID_Param" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDevices">
+            <EntityTypeMapping TypeName="Hartama_IOTModel.PDevice">
+              <MappingFragment StoreEntitySet="PDevice">
+                <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+                <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+                <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+                <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+                <ScalarProperty Name="Device_Description" ColumnName="Device_Description" />
+                <ScalarProperty Name="Device_Site_ID" ColumnName="Device_Site_ID" />
+                <ScalarProperty Name="Device_category_ID" ColumnName="Device_category_ID" />
+                <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+                <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertNotification" FunctionName="Hartama_IOTModel.Store.InsertNotification">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertNotification_Result">
+                <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
