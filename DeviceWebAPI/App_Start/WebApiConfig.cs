@@ -19,7 +19,7 @@ namespace DeviceWebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+            config.EnableCors();
             //config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

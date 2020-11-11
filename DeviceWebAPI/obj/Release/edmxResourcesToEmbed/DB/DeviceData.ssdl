@@ -63,9 +63,13 @@
   <Function Name="InsertNotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
     <Parameter Name="Title" Type="nvarchar" Mode="In" />
-    <Parameter Name="Description" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserSent" Type="nvarchar" Mode="In" />
+    <Parameter Name="problemstat" Type="nvarchar" Mode="In" />
     <Parameter Name="dateCreated" Type="datetime" Mode="In" />
+    <Parameter Name="valuecurrent" Type="decimal" Mode="In" />
+    <Parameter Name="valueupper" Type="decimal" Mode="In" />
+    <Parameter Name="valuelower" Type="decimal" Mode="In" />
+    <Parameter Name="sensorname" Type="nvarchar" Mode="In" />
+    <Parameter Name="Devicename" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="P_NumberSeri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="MODUL" Type="nvarchar" Mode="In" />

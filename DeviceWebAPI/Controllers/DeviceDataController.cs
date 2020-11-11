@@ -14,13 +14,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebSocket4Net;
 
 namespace DeviceWebAPI.Controllers
 {
 
     [RoutePrefix("api/DeviceData")]
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
 
    
     public class DeviceDataController : ApiController
@@ -155,7 +156,7 @@ namespace DeviceWebAPI.Controllers
             //_client.Close();
         }
 
-        public async Task<string> InsertNotif(string deviceid,string sensorid,string sensorname,string problem,DateTime date,decimal valuecurrent, decimal valuelower, decimal valueupper,string devicename)
+        public string InsertNotif(string deviceid,string sensorid,string sensorname,string problem,DateTime date,decimal valuecurrent, decimal valuelower, decimal valueupper,string devicename)
         {
 
             //// ModelTest mdl = new ModelTest();
@@ -174,7 +175,8 @@ namespace DeviceWebAPI.Controllers
            // var result =  db.InsertNotification(deviceid,sensorid,problem,date,valuecurrent,valueupper,valuelower,sensorname,devicename);
            if (problem != "")
             {
-                var result = await Task.Run(() => db.InsertNotification(deviceid, sensorid, problem, date, valuecurrent, valueupper, valuelower, sensorname, devicename).ToList());
+                //var result = await Task.Run(() => db.InsertNotification(deviceid, sensorid, problem, date, valuecurrent, valueupper, valuelower, sensorname, devicename).ToList());
+                var result= db.InsertNotification(deviceid, sensorid, problem, date, valuecurrent, valueupper, valuelower, sensorname, devicename).ToList();
             }
            
             return "ok";
@@ -364,6 +366,48 @@ namespace DeviceWebAPI.Controllers
             }
             
 
+        }
+
+        [HttpPost]
+        [ActionName("ReadFile")]
+        public HttpResponseMessage ReadFile(string datestart, string dateend)
+        {
+            try
+            {
+                var date1 = Convert.ToDateTime(datestart);
+                var date2 = Convert.ToDateTime(dateend);
+                var filePath = System.Web.Hosting.HostingEnvironment.MapPath("~/File/");
+                List<string> reader = new List<string>();
+                var contents = Directory.GetFiles(System.Web.Hosting.HostingEnvironment.MapPath("~/File/"));
+                foreach (var x in contents)
+                {
+                    var tes = System.IO.File.GetCreationTime(@"" + x);
+                    if (tes.Date >= date1.Date && tes.Date <= date2.Date)
+                    {
+                        string contents2 = System.IO.File.ReadAllText(@"" + x);
+                        reader.Add(contents2);
+                    }
+
+                    // if()
+
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, new APIActionResultModel
+                {
+                    Message = "success",
+                    StatusCode = 200,
+                    Result=reader,
+                    ResultCount=reader.Count
+                    
+
+                });
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            
+            
         }
     }
 }

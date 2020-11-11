@@ -180,3 +180,5 @@ D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\obj\Release\DeviceWebAPI.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\obj\Release\DeviceWebAPI.pdb
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.xml
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\SuperSocket.ClientEngine.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\WebSocket4Net.dll

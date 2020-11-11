@@ -10,7 +10,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="InsertNotification" FunctionName="Hartama_IOTModel.Store.InsertNotification" />
     <FunctionImportMapping FunctionImportName="insertlogchange" FunctionName="Hartama_IOTModel.Store.insertlogchange" />
     <EntitySetMapping Name="TSensorTests">
       <EntityTypeMapping TypeName="Hartama_IOTModel.TSensorTest">
@@ -78,5 +77,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InsertNotification" FunctionName="Hartama_IOTModel.Store.InsertNotification">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertNotification_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -38,13 +38,6 @@
       <Parameter Name="Vibra" Mode="In" Type="Decimal" />
       <Parameter Name="date_received" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="InsertNotification">
-      <Parameter Name="DeviceID" Mode="In" Type="String" />
-      <Parameter Name="Title" Mode="In" Type="String" />
-      <Parameter Name="Description" Mode="In" Type="String" />
-      <Parameter Name="UserSent" Mode="In" Type="String" />
-      <Parameter Name="dateCreated" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="insertlogchange" />
     <EntitySet Name="TSensorTests" EntityType="Hartama_IOTModel.TSensorTest" />
     <EntitySet Name="TDetailDevices" EntityType="Hartama_IOTModel.TDetailDevice" />
@@ -57,6 +50,17 @@
     </FunctionImport>
     <EntitySet Name="PSensorParameters" EntityType="Hartama_IOTModel.PSensorParameter" />
     <EntitySet Name="PDevices" EntityType="Hartama_IOTModel.PDevice" />
+    <FunctionImport Name="InsertNotification" ReturnType="Collection(Hartama_IOTModel.InsertNotification_Result)">
+      <Parameter Name="DeviceID" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="problemstat" Mode="In" Type="String" />
+      <Parameter Name="dateCreated" Mode="In" Type="DateTime" />
+      <Parameter Name="valuecurrent" Mode="In" Type="Decimal" />
+      <Parameter Name="valueupper" Mode="In" Type="Decimal" />
+      <Parameter Name="valuelower" Mode="In" Type="Decimal" />
+      <Parameter Name="sensorname" Mode="In" Type="String" />
+      <Parameter Name="Devicename" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ReceiveDataLOG_Result">
     <Property Type="String" Name="Pesan" Nullable="true" />
@@ -119,4 +123,8 @@
     <Property Name="UserLastMaintenance" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="DateLastMaintenance" Type="DateTime" Precision="3" />
   </EntityType>
+  <ComplexType Name="InsertNotification_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
 </Schema>
