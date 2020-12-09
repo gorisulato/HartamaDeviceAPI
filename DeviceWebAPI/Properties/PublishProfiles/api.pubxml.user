@@ -82,7 +82,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2020 13:55:03</publishTime>
     </File>
     <File Include="bin/DeviceWebAPI.dll">
-      <publishTime>11/10/2020 10:42:15</publishTime>
+      <publishTime>11/27/2020 16:07:00</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -202,13 +202,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/30/2018 20:05:08</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>01/28/2015 04:02:42</publishTime>
+      <publishTime>11/28/2018 13:00:36</publishTime>
+    </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>11/28/2018 12:58:44</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
+    <File Include="bin/System.Web.Http.Cors.dll">
+      <publishTime>11/28/2018 13:01:26</publishTime>
+    </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>01/28/2015 04:02:54</publishTime>
+      <publishTime>11/28/2018 13:01:00</publishTime>
     </File>
     <File Include="bin/System.Web.Http.Owin.dll">
       <publishTime>01/28/2015 04:03:16</publishTime>
@@ -271,7 +277,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2020 13:54:29</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>11/03/2020 13:35:57</publishTime>
+      <publishTime>11/11/2020 09:57:35</publishTime>
     </File>
     <File Include="Scripts/ai.0.22.9-build00167.js">
       <publishTime>09/24/2020 13:55:04</publishTime>
@@ -334,7 +340,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2020 13:54:29</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/10/2020 10:42:16</publishTime>
+      <publishTime>11/27/2020 16:07:02</publishTime>
     </File>
   </ItemGroup>
 </Project>

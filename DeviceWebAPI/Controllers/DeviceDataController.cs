@@ -369,6 +369,33 @@ namespace DeviceWebAPI.Controllers
         }
 
         [HttpPost]
+        [ActionName("ReadFilePath")]
+        public HttpResponseMessage ReadFilePath()
+        {
+            try
+            {
+                List<string> path = new List<string>();
+                var filePath = System.Web.Hosting.HostingEnvironment.MapPath("~/File/");
+                path.Add(filePath);
+                return Request.CreateResponse(HttpStatusCode.OK, new APIActionResultModel
+                {
+                    Message = "success",
+                    StatusCode = 200,
+                    Result = path,
+                    ResultCount = path.Count
+
+
+                });
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+
+        }
+        [HttpPost]
         [ActionName("ReadFile")]
         public HttpResponseMessage ReadFile(string datestart, string dateend)
         {

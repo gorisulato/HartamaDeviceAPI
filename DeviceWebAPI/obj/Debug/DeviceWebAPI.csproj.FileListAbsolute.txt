@@ -130,8 +130,12 @@ D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.Owin.Security.Twitte
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.Web.Infrastructure.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Newtonsoft.Json.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Owin.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\SuperSocket.ClientEngine.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Net.Http.Formatting.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Cors.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Helpers.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Cors.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Owin.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.WebHost.dll
@@ -142,6 +146,7 @@ D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.WebPages.Deployment
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.WebPages.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.WebPages.Razor.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\WebGrease.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\WebSocket4Net.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.AI.DependencyCollector.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.AI.Web.xml
@@ -149,9 +154,11 @@ D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.AI.WindowsServer.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.ApplicationInsights.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\Newtonsoft.Json.xml
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Net.Http.Formatting.xml
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Helpers.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.xml
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Cors.xml
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Helpers.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.WebHost.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Mvc.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Optimization.xml
@@ -178,10 +185,3 @@ D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Owin.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\obj\Debug\DeviceWebAPI.csprojResolveAssemblyReference.cache
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\obj\Debug\DeviceWebAPI.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\obj\Debug\DeviceWebAPI.pdb
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.dll
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.xml
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\SuperSocket.ClientEngine.dll
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\WebSocket4Net.dll
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Cors.dll
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Cors.dll
-D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Cors.xml

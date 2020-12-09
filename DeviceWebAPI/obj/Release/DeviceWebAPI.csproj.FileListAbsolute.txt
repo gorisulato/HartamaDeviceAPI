@@ -182,3 +182,6 @@ D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\PusherServer.xml
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\SuperSocket.ClientEngine.dll
 D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\WebSocket4Net.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Cors.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Cors.dll
+D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\bin\System.Web.Http.Cors.xml
